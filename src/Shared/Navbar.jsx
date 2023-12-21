@@ -1,12 +1,23 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
   const handleSignOut = () => {
     logOut()
       .then(() => {
         console.log("Logout");
+        Swal.fire({
+            title: "Success!",
+            text: "Log out Successfully",
+            icon: "success",
+            confirmButtonText: "Cool",
+          });
+          navigate(location?.state ? location.state : "/");
+
       })
       .catch();
   };

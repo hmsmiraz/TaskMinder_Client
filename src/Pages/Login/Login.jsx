@@ -1,6 +1,7 @@
 import { FaGoogle } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
 const Login = () => {
     const { signIn, signInGoogle } = useAuth();
@@ -17,6 +18,12 @@ const Login = () => {
     })
     .catch((error)=>{
         console.log(error)
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: error,
+          });
     })
   };
 
@@ -24,9 +31,22 @@ const Login = () => {
     signInGoogle()
     .then((result) => {
       console.log(result);
+      Swal.fire({
+        title: "Success!",
+        text: "Login Successfully",
+        icon: "success",
+        confirmButtonText: "Cool",
+      });
+      
     })
     .catch((error)=>{
         console.log(error)
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: error,
+          });
     })
   };
   return (
