@@ -7,7 +7,7 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/Dashboard">Dashboard</NavLink>
+        <NavLink to="/dashboard">Dashboard</NavLink>
       </li>
     </>
   );
@@ -44,9 +44,10 @@ const Navbar = () => {
           </Link>
         </div>
         <Link to={"/"}>
-          <button className="btn btn-ghost normal-case text-xl">
-            Task Minder
-          </button>
+          <p className="font-bold text-xl md:pl-2">
+            Task
+            <span className="text-green-500">Minder</span>
+          </p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
@@ -54,17 +55,19 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <div className="flex items-center justify-center">
-        <div>
-          {/* {user ? (
+          <div>
+            {/* {user ? (
             <button onClick={handleSignOut} className="btn">
               Log Out
             </button> 
           ) : ( */}
             <Link to="/login">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn btn-primary text-white font-bold">
+                Login
+              </button>
             </Link>
-        {/*    )} */}
-        </div>
+            {/*    )} */}
+          </div>
         </div>
       </div>
     </div>

@@ -5,8 +5,8 @@ const WhoCanUse = () => {
   return (
     <div className="my-4">
       <div className="mx-auto text-center my-8 md:w-4/12 font-medium">
-        <h2 className="text-3xl py-4 uppercase border-y-4 border-primary">
-          Who can use this?
+        <h2 className="text-xl font-bold uppercase py-4  border-y-4 border-primary">
+          Use this for boost your productivity 
         </h2>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-4 mx-4">
@@ -15,9 +15,8 @@ const WhoCanUse = () => {
           <figure>
             <img src={Bankers} alt="Bankers" />
           </figure>
-          <div className="card-body flex items-center justify-center mt-10">
-            <h2 className="card-title font-bold uppercase">Bankers</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+          <div className="card-body flex items-center justify-center">
+            <h2 className="card-title font-bold uppercase text-4xl">Bankers</h2>
           </div>
         </div>
         {/* 2nd */}
@@ -25,9 +24,8 @@ const WhoCanUse = () => {
           <figure>
             <img src={Students} alt="Students" />
           </figure>
-          <div className="card-body flex items-center justify-center mt-10">
-            <h2 className="card-title font-bold uppercase">Students</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+          <div className="card-body flex items-center justify-center">
+            <h2 className="card-title font-bold uppercase text-4xl">Students</h2>
           </div>
         </div>
         {/* 3rd */}
@@ -35,9 +33,8 @@ const WhoCanUse = () => {
           <figure>
             <img src={Employee} alt="Employee" />
           </figure>
-          <div className="card-body flex items-center justify-center mt-10">
-            <h2 className="card-title font-bold uppercase">Employee</h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
+          <div className="card-body flex items-center justify-center">
+            <h2 className="card-title font-bold uppercase text-4xl">Employee</h2>
           </div>
         </div>
       </div>
