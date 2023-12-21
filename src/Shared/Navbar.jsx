@@ -61,7 +61,7 @@ const Navbar = () => {
             </button> 
           ) : ( */}
             <Link to="/login">
-              <button className="btn">Login</button>
+              <button className="btn btn-primary">Login</button>
             </Link>
         {/*    )} */}
         </div>

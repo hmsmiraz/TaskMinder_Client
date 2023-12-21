@@ -1,7 +1,11 @@
+import Banner from "./Banner";
+import WhoCanUse from "./WhoCanUse";
+
 const Home = () => {
   return (
     <div>
-      <h2>Home</h2>
+     <Banner></Banner>
+     <WhoCanUse></WhoCanUse>
     </div>
   );
 };
