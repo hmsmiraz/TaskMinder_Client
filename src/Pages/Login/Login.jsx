@@ -1,16 +1,34 @@
 import { FaGoogle } from "react-icons/fa6";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
 
 const Login = () => {
+    const { signIn, signInGoogle } = useAuth();
+
   const handleLogin = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
     const email = form.get("email");
     const password = form.get("password");
-    console.log(email, password);
+    // console.log(email, password);
+    signIn(email, password)
+    .then((result) => {
+      console.log(result.user);
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
   };
 
-  const handleGoogleLogin = () => {};
+  const handleGoogleLogin = () => {
+    signInGoogle()
+    .then((result) => {
+      console.log(result);
+    })
+    .catch((error)=>{
+        console.log(error)
+    })
+  };
   return (
     <div className="mx-2">
       <h2 className="text-3xl my-10 text-center font-bold">Please Login Here!</h2>

@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useAuth from "../../Hooks/useAuth";
+import { updateProfile } from "Firebase/auth";
 
 const Register = () => {
   const [registerError, setRegisterError] = useState("");
   const [success, setSuccess] = useState("");
+  const { createUser } = useAuth();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -17,11 +20,31 @@ const Register = () => {
     setRegisterError("");
     setSuccess("");
 
-    console.log(name, photo, email, password);
+    // console.log(name, photo, email, password);
+    createUser(email, password)
+      .then((result) => {
+        setSuccess("User Created Successfully.");
+        console.log(result.user);
+        updateProfile(result.user, {
+          displayName: name,
+          photoURL: photo,
+        })
+          .then(() => {
+            console.log("updated");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className="mx-2">
-      <h2 className="text-3xl my-10 text-center font-bold">Please Register Here!</h2>
+      <h2 className="text-3xl my-10 text-center font-bold">
+        Please Register Here!
+      </h2>
       <form onSubmit={handleRegister} className=" md:w-3/4 lg:w-1/2 mx-auto">
         <div className="form-control">
           <label className="label">
