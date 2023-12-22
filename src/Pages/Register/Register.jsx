@@ -1,13 +1,16 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../Hooks/useAuth";
 import { updateProfile } from "Firebase/auth";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const [registerError, setRegisterError] = useState("");
   const [success, setSuccess] = useState("");
   const { createUser } = useAuth();
-
+  const axiosPublic = useAxiosPublic();
+  const navigate = useNavigate();
   const handleRegister = (e) => {
     e.preventDefault();
 
@@ -30,7 +33,19 @@ const Register = () => {
           photoURL: photo,
         })
           .then(() => {
-            console.log("updated");
+            const createdAt = result.user?.metadata?.creationTime;
+            const user = {
+              email,
+              createdAt: createdAt,
+            };
+            axiosPublic.post("/users", user);
+            Swal.fire({
+              title: "Success!",
+              text: "Login Successfully",
+              icon: "success",
+              confirmButtonText: "Cool",
+            });
+            navigate("/dashboard");
           })
           .catch((error) => {
             console.log(error);

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Bg from "../../assets/bg.jpg";
 const Banner = () => {
   return (
@@ -12,7 +13,9 @@ const Banner = () => {
           <p className="mb-5">
             Streamline Your To-Dos with Effortless Task Management
           </p>
+          <Link to={'/login'}>
           <button className="btn btn-primary text-white font-bold">Lets Explore</button>
+          </Link>
         </div>
       </div>
     </div>
