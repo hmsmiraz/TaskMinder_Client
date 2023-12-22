@@ -4,8 +4,8 @@ const Dashboard = () => {
   return (
     <div className="flex">
       {/* sidebar */}
-      <div className="w-64 min-h-screen bg-emerald-400">
-        <ul className="menu p-4">
+      <div className="w-64 min-h-screen bg-green-600">
+        <ul className="menu p-4 text-blue-900">
           <li>
             <NavLink to={"/"}>
               <FaHome></FaHome> Home

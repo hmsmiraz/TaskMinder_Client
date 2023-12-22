@@ -20,10 +20,6 @@ import AllTask from "../Pages/Dashboard/AllTask";
           element: <Home></Home>
         },
         {
-          path: '/dashboard',
-          element: <Dashboard></Dashboard>
-        },
-        {
           path: '/login',
           element: <Login></Login>
         },
