@@ -2,7 +2,7 @@ import { FaXTwitter, FaGithub, FaLinkedin, FaFacebook } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
-    <footer className="footer footer-center p-10 bg-stone-200 text-primary-content">
+    <footer className="footer footer-center p-10 bg-stone-200">
       <aside>
         <img src="/vite.svg" className="w-10 rounded-full" />
         <p className="font-bold">

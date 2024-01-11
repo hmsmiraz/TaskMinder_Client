@@ -10,7 +10,7 @@ const AddTask = () => {
   const [priority, setPriority] = useState("Low");
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
-  const email = user.email;
+  const email = user?.email;
   // console.log(email)
 
   const handleSubmit = async (e) => {
@@ -37,12 +37,11 @@ const AddTask = () => {
       setDeadline("");
       setPriority("Low");
     }
-    // You can add logic here to send the taskData to an API or perform any other actions with it
   };
   return (
     <div className="mx-3">
       <h2 className="text-3xl my-10 text-center font-bold">Add a Task!</h2>
-      <div className="max-w-md mx-auto mt-6 p-4 border border-gray-300 rounded-md">
+      <div className="max-w-md mx-auto mt-6 p-4 border border-gray-300 rounded-md my-5">
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
@@ -56,7 +55,7 @@ const AddTask = () => {
               id="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="textarea textarea-secondary mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             />
           </div>
           <div className="mb-4">
@@ -70,7 +69,7 @@ const AddTask = () => {
               id="description"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="textarea textarea-secondary mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             ></textarea>
           </div>
           <div className="mb-4">
@@ -85,7 +84,7 @@ const AddTask = () => {
               id="deadline"
               value={deadline}
               onChange={(e) => setDeadline(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="textarea textarea-secondary mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             />
           </div>
           <div className="mb-4">
@@ -99,17 +98,17 @@ const AddTask = () => {
               id="priority"
               value={priority}
               onChange={(e) => setPriority(e.target.value)}
-              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+              className="textarea textarea-secondary mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             >
               <option value="Low">Low</option>
               <option value="Moderate">Moderate</option>
               <option value="High">High</option>
             </select>
           </div>
-          <div className="mt-6">
+          <div className="mt-6 flex items-center justify-center">
             <button
               type="submit"
-              className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:bg-indigo-700"
+              className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-cyan-700 focus:outline-none focus:bg-cyan-700"
             >
               Submit
             </button>

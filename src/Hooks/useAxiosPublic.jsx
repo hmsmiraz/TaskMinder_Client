@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosPublic = axios.create({
-  baseURL: "https://task-minder-server-one.vercel.app",
+  baseURL: "http://localhost:5000",
 });
 const useAxiosPublic = () => {
   return axiosPublic;

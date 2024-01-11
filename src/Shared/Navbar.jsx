@@ -11,13 +11,12 @@ const Navbar = () => {
       .then(() => {
         console.log("Logout");
         Swal.fire({
-            title: "Success!",
-            text: "Log out Successfully",
-            icon: "success",
-            confirmButtonText: "Cool",
-          });
-          navigate(location?.state ? location.state : "/");
-
+          title: "Success!",
+          text: "Log out Successfully",
+          icon: "success",
+          confirmButtonText: "Cool",
+        });
+        navigate(location?.state ? location.state : "/");
       })
       .catch();
   };
@@ -27,7 +26,14 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/dashboard">Dashboard</NavLink>
+        <NavLink to={"/addTask"}>
+         Add Task
+        </NavLink>
+      </li>
+      <li>
+        <NavLink to={"/allTask"}>
+          All Task
+        </NavLink>
       </li>
     </>
   );
