@@ -9,76 +9,136 @@ const AllTask = () => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
   const email = user?.email;
-  //   console.log(email)
   const filteredTask = tasks.filter((task) => task.email == email);
-  //   console.log(filteredTask);
 
-  const handleDelete = (item) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-        const res = await axiosPublic.delete(`/tasks/${item._id}`);
-        console.log(res.data);
-        if (res.data.deletedCount > 0) {
-          refetch();
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: `${item.title} request has been deleted!`,
-            showConfirmButton: false,
-            timer: 1500,
-          });
-        }
-      }
-    });
-  };
+  const Incomplete = "Incomplete";
+  const IncompleteTask = filteredTask.filter(
+    (task) => task.priority == Incomplete
+  );
+  const ToDO = "ToDO";
+  const ToDOTask = filteredTask.filter((task) => task.priority == ToDO);
+  const Doing = "Doing";
+  const DoingTask = filteredTask.filter((task) => task.priority == Doing);
+  const UnderReview = "UnderReview";
+  const UnderReviewTask = filteredTask.filter(
+    (task) => task.priority == UnderReview
+  );
+  const Completed = "Completed";
+  const CompletedTask = filteredTask.filter(
+    (task) => task.priority == Completed
+  );
+  const OverDraft = "OverDraft";
+  const OverDraftTask = filteredTask.filter(
+    (task) => task.priority == OverDraft
+  );
+  console.log("IncompleteTask", IncompleteTask);
+  console.log("ToDOTask", ToDOTask);
+  console.log("DoingTask", DoingTask);
+  console.log("UnderReviewTask", UnderReviewTask);
+  console.log("CompletedTask", CompletedTask);
+  console.log("OverDraftTask");
+
+  // const handleDelete = (item) => {
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, delete it!",
+  //   }).then(async (result) => {
+  //     if (result.isConfirmed) {
+  //       const res = await axiosPublic.delete(`/tasks/${item._id}`);
+  //       console.log(res.data);
+  //       if (res.data.deletedCount > 0) {
+  //         refetch();
+  //         Swal.fire({
+  //           position: "center",
+  //           icon: "success",
+  //           title: `${item.title} request has been deleted!`,
+  //           showConfirmButton: false,
+  //           timer: 1500,
+  //         });
+  //       }
+  //     }
+  //   });
+  // };
   return (
     <div>
       <h2 className=" text-3xl font-bold text-center"> All Your Task Here</h2>
-      <div className="my-5">
-        <div className="overflow-x-auto">
-          <table className="table">
-            {/* head */}
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Task Name</th>
-                <th>Deadline</th>
-                <th>Priority</th>
-                <th>Details</th>
-                <th>Action</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredTask.map((item, index) => (
-                <tr key={item._id}>
-                  <th>{index + 1}</th>
-                  <td>{item.name}</td>
-                  <td>{item.deadline}</td>
-                  <td>{item.priority}</td>
-                  <td>{item.description}</td>
-                  <td>
-                    <button className="btn ">
-                      <FaEdit />
-                    </button>
-                  </td>
-                  <td>
-                    <button onClick={() => handleDelete(item)} className="btn">
-                      <FaTrash />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+      <div className="flex my-5 gap-2">
+        {/* 1 */}
+        <div>
+          <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title">Card title!</h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Buy Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* 2 */}
+        <div>
+          <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title">Card title!</h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Buy Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* 3 */}
+        <div>
+          <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title">Card title!</h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Buy Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* 4 */}
+        <div>
+          <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title">Card title!</h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Buy Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* 5 */}
+        <div>
+          <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title">Card title!</h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Buy Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        {/* 6 */}
+        <div>
+          <div className="card w-96 bg-base-100 shadow-xl">
+            <div className="card-body">
+              <h2 className="card-title">Card title!</h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div className="card-actions justify-end">
+                <button className="btn btn-primary">Buy Now</button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

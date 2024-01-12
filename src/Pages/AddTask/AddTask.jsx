@@ -7,12 +7,12 @@ const AddTask = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [deadline, setDeadline] = useState("");
-  const [priority, setPriority] = useState("Low");
+  const [priority, setPriority] = useState("Incomplete");
+  const [files, setFiles] = useState([]);
   const axiosPublic = useAxiosPublic();
   const { user } = useAuth();
+  const userPic = user?.photoURL;
   const email = user?.email;
-  // console.log(email)
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     const taskData = {
@@ -21,8 +21,10 @@ const AddTask = () => {
       deadline,
       priority,
       email,
+      files,
+      userPic,
     };
-    console.log(taskData);
+    // console.log(taskData);
     const result = await axiosPublic.post("/tasks", taskData);
     if (result.data.insertedId) {
       Swal.fire({
@@ -32,10 +34,11 @@ const AddTask = () => {
         showConfirmButton: false,
         timer: 1500,
       });
-      setTitle("");
-      setDescription("");
-      setDeadline("");
-      setPriority("Low");
+      // setTitle("");
+      // setDescription("");
+      // setDeadline("");
+      // setPriority("Low");
+      // setFiles();
     }
   };
   return (
@@ -100,11 +103,30 @@ const AddTask = () => {
               onChange={(e) => setPriority(e.target.value)}
               className="textarea textarea-secondary mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
             >
-              <option value="Low">Low</option>
-              <option value="Moderate">Moderate</option>
-              <option value="High">High</option>
+              <option value="Incomplete">Incomplete</option>
+              <option value="ToDO">ToDO</option>
+              <option value="Doing">Doing</option>
+              <option value="UnderReview">UnderReview</option>
+              <option value="Completed">Completed</option>
+              <option value="OverDraft">OverDraft</option>
             </select>
           </div>
+          <div className="mb-4">
+            <label
+              htmlFor="files"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Files (One or more)
+            </label>
+            <input
+              type="file"
+              id="files"
+              multiple
+              onChange={(e) => setFiles(e.target.files)}
+              className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+            />
+          </div>
+
           <div className="mt-6 flex items-center justify-center">
             <button
               type="submit"

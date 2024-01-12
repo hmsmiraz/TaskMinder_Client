@@ -45,7 +45,7 @@ const Register = () => {
               icon: "success",
               confirmButtonText: "Cool",
             });
-            navigate("/dashboard");
+            navigate("/allTask");
           })
           .catch((error) => {
             console.log(error);

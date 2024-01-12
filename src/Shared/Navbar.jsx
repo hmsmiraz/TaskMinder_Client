@@ -26,14 +26,10 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to={"/addTask"}>
-         Add Task
-        </NavLink>
+        <NavLink to={"/addTask"}>Add Task</NavLink>
       </li>
       <li>
-        <NavLink to={"/allTask"}>
-          All Task
-        </NavLink>
+        <NavLink to={"/allTask"}>All Task</NavLink>
       </li>
     </>
   );
@@ -81,6 +77,17 @@ const Navbar = () => {
       </div>
       <div className="navbar-end">
         <div className="flex items-center justify-center">
+          <div>
+            {user ? (
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-5 lg:w-10 rounded-full">
+                  <img src={user.photoURL} />
+                </div>
+              </label>
+            ) : (
+              ""
+            )}
+          </div>
           <div>
             {user ? (
               <button onClick={handleSignOut} className="btn btn-neutral">
