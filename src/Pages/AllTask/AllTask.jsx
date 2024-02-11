@@ -10,6 +10,22 @@ const AllTask = () => {
   const email = user?.email;
   const filteredTask = tasks.filter((task) => task.email == email);
 
+  const handleComplete = (item) => {
+    axiosPublic.patch(`/tasks/${item._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: `${item.title} is completed!`,
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        refetch();
+      }
+    });
+  };
+
   const handleDelete = (item) => {
     Swal.fire({
       title: "Are you sure?",
@@ -52,8 +68,8 @@ const AllTask = () => {
                 <th>Deadline</th>
                 <th>Priority</th>
                 <th>Status</th>
-                <th>Action</th>
-                <th>Action</th>
+                <th>Edit</th>
+                <th>Delete</th>
               </tr>
             </thead>
             <tbody>
@@ -64,17 +80,32 @@ const AllTask = () => {
                   <td>{item.description}</td>
                   <td>{item.deadline}</td>
                   <td>{item.priority}</td>
-                  <td>{item.status}</td>
                   <td>
-                      <button className="text-blue-500 text-lg">
-                        <FaEdit></FaEdit>
+                    {item?.status === "Incomplete" ? (
+                      <button
+                        onClick={() => handleComplete(item)}
+                        className="tooltip text-yellow-800 btn"
+                        data-tip="Mark as complete"
+                      >
+                        Incomplete
                       </button>
-                    </td>
-                    <td>
-                      <button className="text-red-500 text-lg" onClick={() => handleDelete(item)}>
-                        <FaTrash></FaTrash>
-                      </button>
-                    </td>
+                    ) : (
+                      <p>Complete</p>
+                    )}
+                  </td>
+                  <td>
+                    <button className="text-blue-500  btn">
+                      <FaEdit></FaEdit>
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      className="btn text-red-500"
+                      onClick={() => handleDelete(item)}
+                    >
+                      <FaTrash></FaTrash>
+                    </button>
+                  </td>
                 </tr>
               ))}
             </tbody>
