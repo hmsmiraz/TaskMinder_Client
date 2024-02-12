@@ -22,7 +22,7 @@ const AddTask = () => {
       priority,
       email,
     };
-    console.log(taskData);
+    // console.log(taskData);
     const result = await axiosPublic.post("/tasks", taskData);
     if (result.data.insertedId) {
       Swal.fire({

@@ -3,6 +3,8 @@ import useAuth from "../../Hooks/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
 import useTask from "../../Hooks/useTasks";
 import Swal from "sweetalert2";
+
+
 const AllTask = () => {
   const [tasks, , refetch] = useTask();
   const { user } = useAuth();
@@ -17,7 +19,7 @@ const AllTask = () => {
         Swal.fire({
           position: "center",
           icon: "success",
-          title: `${item.title} is completed!`,
+          title: `${item.title} is Completed!`,
           showConfirmButton: false,
           timer: 1500,
         });
@@ -44,7 +46,7 @@ const AllTask = () => {
           Swal.fire({
             position: "center",
             icon: "success",
-            title: `${item.title} request has been deleted!`,
+            title: `${item.title} has been deleted!`,
             showConfirmButton: false,
             timer: 1500,
           });
@@ -79,23 +81,38 @@ const AllTask = () => {
                   <td>{item.title}</td>
                   <td>{item.description}</td>
                   <td>{item.deadline}</td>
-                  <td>{item.priority}</td>
+                  <td>
+                    {item?.priority === "low" ? (
+                      <p className="text-yellow-500 text-base font-bold">Low</p>
+                    ) : item?.priority === "medium" ? (
+                      <p className="text-orange-500 text-base font-bold">
+                        Medium
+                      </p>
+                    ) : item?.priority === "high" ? (
+                      <p className="text-red-500 text-base font-bold">High</p>
+                    ) : (
+                      <p></p>
+                    )}
+                  </td>
+
                   <td>
                     {item?.status === "Incomplete" ? (
                       <button
                         onClick={() => handleComplete(item)}
                         className="tooltip text-yellow-800 btn"
-                        data-tip="Mark as complete"
+                        data-tip="Click for Completed"
                       >
                         Incomplete
                       </button>
                     ) : (
-                      <p>Complete</p>
+                      <p className="text-green-500 text-base font-bold">
+                        Complete
+                      </p>
                     )}
                   </td>
                   <td>
-                    <button className="text-blue-500  btn">
-                      <FaEdit></FaEdit>
+                    <button className="btn">
+                      <FaEdit />
                     </button>
                   </td>
                   <td>
